@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head>
+            <style></style>
+        </head>
+        <body>
+            
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurabh Sharma - Area Sales Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --secondary: #0ea5e9;
+            --accent: #c53030;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --section-bg: #0f172a;
+            --section-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light);
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background-color: rgba(29, 78, 216, 0.2);
+        }
+
+        .nav-link.active {
+            color: var(--secondary);
+            background-color: rgba(14, 165, 233, 0.15);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            width: 50px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Profile Section */
+        #profile {
+            background-color: var(--card-bg);
+            padding: 100px 0;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .profile-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .profile-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(30, 41, 59, 0.8);
+            padding: 10px 18px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item:hover {
+            background-color: rgba(29, 78, 216, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(15, 23, 42, 0.8);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+        }
+
+        /* Summary Section */
+        #summary {
+            background-color: var(--section-bg);
+        }
+
+        .summary-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .professional-summary {
+            background-color: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: var(--section-shadow);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .summary-item {
+            background-color: rgba(52, 78, 216, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .summary-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .summary-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .summary-text {
+            color: var(--light);
+        }
+
+        /* Experience Section */
+        #experience {
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: rgba(29, 78, 216, 0.3);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 30px 50px 30px 40px;
+            position: relative;
+            background-color: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            box-shadow: var(--section-shadow);
+            margin-bottom: 40px;
+            transition: transform 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.02);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            transform-origin: right center;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            transform-origin: left center;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            top: 40px;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -5px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -5px;
+        }
+
+        .timeline-company {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .timeline-position {
+            font-size: 1rem;
+            color: var(--secondary) !important;
+            margin-bottom: 15px;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #a3b3c4;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .timeline-desc {
+            line-height: 1.6;
+        }
+
+        .timeline-desc ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--light);
+        }
+
+        .timeline-desc li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: var(--secondary);
+        }
+
+        /* Market Leadership Section */
+        #leadership {
+            background-color: var(--section-bg);
+        }
+
+        .market-stats {
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            background-color: rgba(23, 32, 55, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--section-shadow);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #a3b3c4;
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--section-shadow);
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .contact-info {
+            background-color: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            max-width: 400px;
+            margin: 40px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+        }
+
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.2);
+        }
+
+        .submit-btn:hover {
+            background-color: #0d8bc7;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin: 0 10px;
+            text-decoration: none;
+            color: var(--secondary);
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #a3b3c4;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Utility Classes */
+        .section-text {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                flex-direction: column;
+                background-color: rgba(15, 23, 42, 0.95);
+                width: 100%;
+                text-align: center;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .timeline::after {
+                content: '';
+                position: absolute;
+                top: 80px;
+                left: 30px;
+                width: 2px;
+                height: calc(100% - 160px);
+                background-color: rgba(29, 78, 216, 0.3);
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Scroll Animation */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-cogs"></i>
+                <span class="logo-text">Saurabh</span>
+            </div>
+            <div class="nav-links">
+                <a href="#profile" class="nav-link active" data-section="profile">Profile</a>
+                <a href="#summary" class="nav-link" data-section="summary">Summary</a>
+                <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+                <a href="#leadership" class="nav-link" data-section="leadership">Market Leadership</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Saurabh Sharma</h2>
+                <p class="section-subtitle">Area Sales Manager | Industrial Tools &amp; MRO Expert</p>
+            </div>
+            <div class="profile-container">
+                <div class="profile-image">
+                    <img src="https://th.bing.com/th/id/OIP.6jS-GHsT1j0GgYXocfpQIQEsEo?rs=1&amp;pid=ImgDetMain" alt="Saurabh Sharma" class="profile-img">
+                </div>
+                <div class="profile-info">
+                    <h2 class="text-accent">Industrial Sales Leader with Vision</h2>
+                    <p class="section-text">With over a decade of experience in the industrial tools and maintenance products segment, I specialize in driving growth through strategic planning and relationship management.</p>
+                    <div class="profile-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Gurugram, Haryana</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+91 9873398584</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>saurabh.sap2@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section id="summary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Summary</h2>
+                <p class="section-subtitle">Dedicated and strategic sales professional with a track record of driving growth and building lasting client relationships</p>
+            </div>
+            <div class="summary-content">
+                <p class="section-text">A highly motivated and performance-driven sales professional with over 12 years of experience in the industrial tools and maintenance products segment. Thrive in dynamic environments, excel at building long-term client relationships, and passionate about driving growth through strategic planning and execution.</p>
+                
+                <div class="professional-summary">
+                    <h3 class="section-title" style="font-size: 1.8rem; margin-top: 0;">Core Expertise</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <div class="summary-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="summary-number">95%</div>
+                            <p class="summary-text">Network Building</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon"><i class="fas fa-lightbulb"></i></div>
+                            <div class="summary-number">98%</div>
+                            <p class="summary-text">Innovation</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="summary-number">125%</div>
+                            <p class="summary-text">Revenue Achievement</p>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="summary-number">87%</div>
+                            <p class="summary-text">Trend Adaptation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Proven track record of success in expanding networks and driving revenue growth</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-company">UVS Engineers</div>
+                    <div class="timeline-position">Area Sales Manager</div>
+                    <div class="timeline-date">June 2012 – Present</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Expanded dealer networks across assigned regions</li>
+                            <li>Successfully drove premium industrial brands including Pidilite, CRC, Groz, Baker, Insize, Mitutoyo, and Würth</li>
+                            <li>Consistently achieved and exceeded annual sales targets</li>
+                            <li>Built long-term relationships with B2B clients across automotive, manufacturing, and construction sectors</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                
+           
+                        
+                    </div>
+                </div>
+                <!-- Additional timeline items would go here -->
+            </div>
+        
+    </section>
+
+    <!-- Market Leadership Section -->
+    <section id="leadership">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Market Leadership</h2>
+                <p class="section-subtitle">Proven ability to identify and capitalize on market opportunities</p>
+            </div>
+            <div class="market-stats">
+                <div class="market-stat">
+                    <div class="stat-item">
+                        <div class="stat-value">+85%</div>
+                        <div class="stat-label">Network Growth in Haryana Region</div>
+                    </div>
+                </div>
+                <div class="market-stat">
+                    <div class="stat-item">
+                        <div class="stat-value">+65%</div>
+                        <div class="stat-label">Territory Revenue Increase</div>
+                    </div>
+                </div>
+                <div class="market-stat">
+                    <div class="stat-item">
+                        <div class="stat-value">+48%</div>
+                        <div class="stat-label">Industry Market Share</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to discuss how our partnership can drive your business growth?</p>
+            </div>
+            <div class="contact-container">
+                <h3 class="section-title" style="margin-bottom: 30px;">Contact Information</h3>
+                <div class="contact-info">
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <p>Gurugram, Haryana</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <p>+91 9873398584</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <p>saurabh.sap2@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 class="section-title">Send a Message</h3>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" class="form-input" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-input" placeholder="Type your message here..." rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-user"></i> Saurabh Sharma
+                </div>
+                <div class="footer-links">
+                    <a href="#profile" class="footer-link">Profile</a>
+                    <a href="#summary" class="footer-link">Summary</a>
+                    <a href="#experience" class="footer-link">Experience</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                </div>
+                <p class="copyright">
+                    © 2025 Saurabh Sharma. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navbar
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('data-section');
+                e.preventDefault();
+                
+                document.getElementById(targetId).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.querySelector('.submit-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && subject && message) {
+                alert('Message sent! (This is a demo)');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+
+
+            <script></script>
+        
+    
+</body>
